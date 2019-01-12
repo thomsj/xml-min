@@ -1,0 +1,80 @@
+{
+  "name": "xml-min",
+  "version": "0.1.0",
+  "description": "Minifies XML, including namespaces",
+  "keywords": [
+    "xml",
+    "minify",
+    "minifier",
+    "namespaces"
+  ],
+  "homepage": "https://github.com/thomsj/xml-min#readme",
+  "bugs": "https://github.com/thomsj/xml-min/issues",
+  "license": "MIT",
+  "author": "James Thomson",
+  "files": [
+    "/bin/",
+    "/lib/",
+    "!*.map"
+  ],
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "bin": "./bin/cli",
+  "repository": "thomsj/xml-min",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json,md}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.ts": [
+        "tslint --fix -c ./tslint.json",
+        "prettier --write",
+        "jest --findRelatedTests",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json"
+    ]
+  },
+  "scripts": {
+    "test": "npm run lint && tsc --noEmit && jest",
+    "prepublishOnly": "npm run lint && tsc && npm run prettier:write && jest",
+    "lint": "npm run tslint && npm run prettier:list",
+    "tslint": "tslint -c ./tslint.json '**/*.ts'",
+    "prettier:list": "prettier -l '**/*.{js,json,md,ts}'",
+    "prettier:write": "prettier --write './lib/**/*.{js,ts}'",
+    "tsc": "tsc --sourceMap && npm run prettier:write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.3.1",
+    "@commitlint/config-conventional": "^7.3.1",
+    "@commitlint/travis-cli": "^7.3.1",
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "xml-js": "^1.6.9"
+  }
+}
