@@ -6,5 +6,5 @@ node_js:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 script:
-  - npm test -- --runInBand
+  - npm test -- -- --runInBand
   - commitlint-travis
