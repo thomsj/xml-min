@@ -43,5 +43,11 @@ describe("XmlJsConverter", () => {
       const actual = XmlJsConverter.toXmlFrom(js);
       expect(actual).toBe(expected);
     });
+
+    test("returns empty string when given empty object", () => {
+      const js: Element = {};
+      const actual = XmlJsConverter.toXmlFrom(js);
+      expect(actual).toBe("");
+    });
   });
 });
