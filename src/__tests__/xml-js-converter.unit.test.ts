@@ -18,6 +18,14 @@ describe("XmlJsConverter", () => {
       const actual = XmlJsConverter.toJsFrom(xml);
       expect(actual).toEqual(expected);
     });
+
+    test("ignores comments", () => {
+      const xml = "<!--comment-->";
+      const expected: Element = {};
+
+      const actual = XmlJsConverter.toJsFrom(xml);
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe(".toXmlFrom()", () => {
