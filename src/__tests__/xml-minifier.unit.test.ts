@@ -7,5 +7,11 @@ describe("XmlMinifier", () => {
       const actual = new XmlMinifier(input).minify();
       expect(actual).toBe(input);
     });
+
+    test("removes comments", () => {
+      const xml = "<!--comment-->";
+      const actual = new XmlMinifier(xml).minify();
+      expect(actual).toBe("");
+    });
   });
 });
