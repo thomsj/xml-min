@@ -19,4 +19,21 @@ describe("XmlJsConverter", () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe(".toXmlFrom()", () => {
+    test("converts JS object to XML string", () => {
+      const js: Element = {
+        elements: [
+          {
+            name: "foo",
+            type: "element",
+          },
+        ],
+      };
+
+      const expected = "<foo/>";
+      const actual = XmlJsConverter.toXmlFrom(js);
+      expect(actual).toBe(expected);
+    });
+  });
 });
