@@ -1,8 +1,8 @@
-import { Element, js2xml, Options, xml2js } from "xml-js";
+import { Element, js2xml, Options as XMLJSOptions, xml2js } from "xml-js";
 export { toJsFrom, toXmlFrom };
 
 function toJsFrom(xml: string): Element {
-  const options: Options.XML2JS = {
+  const options: XMLJSOptions.XML2JS = {
     ignoreComment: true,
   };
 
