@@ -1,3 +1,4 @@
+import { Options } from "../options";
 import { XmlMinifier } from "../xml-minifier";
 
 describe("XmlMinifier", () => {
@@ -22,6 +23,20 @@ describe("XmlMinifier", () => {
 
       const expected = `<foo baz="a"><bar baz="   b   "/></foo>`;
       const actual = new XmlMinifier(xml).minify();
+      expect(actual).toBe(expected);
+    });
+
+    test("indents resultant XML when desired", () => {
+      const xml = "<foo><bar/></foo>";
+      const options: Options = { spaces: 2 };
+
+      // prettier-ignore
+      const expected =
+`<foo>
+  <bar/>
+</foo>`;
+
+      const actual = new XmlMinifier(xml, options).minify();
       expect(actual).toBe(expected);
     });
   });
