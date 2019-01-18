@@ -60,6 +60,7 @@
     "prettier:list": "prettier -l '**/*.{js,json,md,ts}'",
     "prettier:write": "prettier --write './lib/**/*.{js,ts}'",
     "jest": "jest --collectCoverageFrom='src/**/*.ts'",
+    "jest:watch": "npm run jest -- --watch",
     "tsc": "tsc --sourceMap && npm run prettier:write"
   },
   "devDependencies": {
