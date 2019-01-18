@@ -1,4 +1,5 @@
 import { Element, js2xml, Options as XMLJSOptions, xml2js } from "xml-js";
+import { Options } from "./options";
 export { toJsFrom, toXmlFrom };
 
 function toJsFrom(xml: string): Element {
@@ -9,6 +10,6 @@ function toJsFrom(xml: string): Element {
   return xml2js(xml, options) as Element;
 }
 
-function toXmlFrom(js: Element): string {
-  return js2xml(js);
+function toXmlFrom(js: Element, options?: Options): string {
+  return js2xml(js, options);
 }

@@ -1,4 +1,5 @@
 import { Element } from "xml-js";
+import { Options } from "../options";
 import * as XmlJsConverter from "../xml-js-converter";
 
 describe("XmlJsConverter", () => {
@@ -48,6 +49,36 @@ describe("XmlJsConverter", () => {
       const js: Element = {};
       const actual = XmlJsConverter.toXmlFrom(js);
       expect(actual).toBe("");
+    });
+
+    test("indents resultant XML when desired", () => {
+      const js: Element = {
+        elements: [
+          {
+            name: "foo",
+            type: "element",
+
+            // tslint:disable-next-line:object-literal-sort-keys
+            elements: [
+              {
+                name: "bar",
+                type: "element",
+              },
+            ],
+          },
+        ],
+      };
+
+      const options: Options = { spaces: 2 };
+
+      // prettier-ignore
+      const expected =
+`<foo>
+  <bar/>
+</foo>`;
+
+      const actual = XmlJsConverter.toXmlFrom(js, options);
+      expect(actual).toBe(expected);
     });
   });
 });
